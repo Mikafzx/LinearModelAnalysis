@@ -2,7 +2,7 @@
 % Please edit documentation in R/mlr_analysis.R
 \name{mlr_analysis}
 \alias{mlr_analysis}
-\title{Model analysis}
+\title{Multiple linear model analysis}
 \usage{
 mlr_analysis(formula, dataset)
 }
@@ -12,7 +12,10 @@ mlr_analysis(formula, dataset)
 \item{data}{a data frame containing all needed variables in the formula.}
 }
 \value{
-the summary and anova table which contains outcomes of mlr model.
+the summary table which contains residuals, fitted_values, df,
+coeff_table（which include Estimates, Std.Error, t value and p value,
+R_squared, adj_R_squared, F_statistic, p-value of F_test and CI_95 of
+the input multiple linear model.
 }
 \description{
 This function calculates and analysis multiple linear regression

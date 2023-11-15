@@ -72,7 +72,7 @@ mlr_analysis = function(formula, dataset) {
   f_test = c(f_value, df1, df2)
   names(f_test) = c("F stat", "df1", "df2")
   CI = cbind(Lower_b, Upper_b)
-  colnames(CI) = c("2.5%", "97.5%")
+  colnames(CI) = c("2.5 %", "97.5 %")
 
   # List all results out
   summary_result = list(

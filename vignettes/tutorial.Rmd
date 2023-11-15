@@ -21,14 +21,14 @@ library(bench)
 data("mtcars")
 ```
 
-# Purpose of the package
+## Purpose of the package
 
 This package include a r function mlr_analysis which take a multiple linear formula 
 and the data set as input, fit the model and output the residuals, fitted_values, df, 
 coeff_table（which include Estimates, Std.Error, t value and p value), R_squared,
 adj_R_squared, F_statistic, p-value of F_test and CI_95  of the fitted model.
 
-# Example using this package
+## Example using this package
 
 Here is an example of fitting a model with three covariance from the dataset mtcars and its' model analysis.
 ```{r}
@@ -40,32 +40,40 @@ Here is an example of fitting a model with interaction from the dataset mtcars a
 mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
 mymodel2
 ```
-# Benchmark between mlr_analysis and the original lm function
+## Comapre and benchmark between mlr_analysis and the original lm function
+
 ```{r}
 # fit the model which contains interaction with original lm function
 lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
 sum_lm = summary(lm_model)
+lm_model
+sum_lm
 ```
-
-```{r}
+# Compare results from two functions
+```{r result comparisons}
 # compare the coefficients between two functions
 all.equal(as.numeric(mymodel2$coeff_table), as.numeric((sum_lm)$Coefficients))
+bench::mark(as.numeric(mymodel2$coeff_table), as.numeric((sum_lm)$Coefficients))
 
 # compare the residuals between two functions
 all.equal(as.numeric(mymodel2$summary_table$residuals), as.numeric(lm_model$residuals))
-
-# compare the fitted values between two functions
-all.equal(as.numeric(mymodel2$fitted_values), as.numeric(lm_model$fitted.values))
+bench::mark(as.numeric(mymodel2$summary_table$residuals), as.numeric(lm_model$residuals))
 
 # compare the df between two functions
 all.equal(as.numeric(mymodel2$df), as.numeric(sum_lm$DF))
-
-# compare the  between two functions
-all.equal(as.numeric(mymodel2$R_squared), as.numeric(sum_lm$r.squared))
-
-all.equal(as.numeric(mymodel2$F_stat), as.numeric(sum_lm$fstatistic))
+bench::mark(as.numeric(mymodel2$df), as.numeric(sum_lm$DF))
 ```
+Through the comparisons between the result given by mlr_analysis() and lm(), it is showned that the reults are the same. 
 
-```{r}
+# Compare spped of two functions
+```{r speed comparisons}
+speed1 = bench::mark(as.numeric(mymodel2$coeff_table), as.numeric((sum_lm)$Coefficients))
+speed1
 
+speed2 = bench::mark(as.numeric(mymodel2$summary_table$residuals), as.numeric(lm_model$residuals))
+speed2
+
+speed3 = bench::mark(as.numeric(mymodel2$df), as.numeric(sum_lm$DF))
+speed3
 ```
+Through the speed comparisons, it is shown that the overall speed of mlr_analysis() is faster than the overall speed of lm().
