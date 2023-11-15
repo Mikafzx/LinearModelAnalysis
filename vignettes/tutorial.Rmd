@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(LinearModelAnalysis)
+library(bench)
 data("mtcars")
 ```
 
@@ -31,16 +32,40 @@ adj_R_squared, F_statistic, p-value of F_test and CI_95  of the fitted model.
 
 Here is an example of fitting a model with three covariance from the dataset mtcars and its' model analysis.
 ```{r}
-mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+mymodel1 = mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+mymodel1
 ```
 Here is an example of fitting a model with interaction from the dataset mtcars and its' model analysis.
 ```{r}
-mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+mymodel2
 ```
 # Benchmark between mlr_analysis and the original lm function
 ```{r}
-# fit the model which contains interaction with lm function
-lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcar)
-
+# fit the model which contains interaction with original lm function
+lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+sum_lm = summary(lm_model)
 ```
 
+```{r}
+# compare the coefficients between two functions
+all.equal(as.numeric(mymodel2$coeff_table), as.numeric((sum_lm)$Coefficients))
+
+# compare the residuals between two functions
+all.equal(as.numeric(mymodel2$summary_table$residuals), as.numeric(lm_model$residuals))
+
+# compare the fitted values between two functions
+all.equal(as.numeric(mymodel2$fitted_values), as.numeric(lm_model$fitted.values))
+
+# compare the df between two functions
+all.equal(as.numeric(mymodel2$df), as.numeric(sum_lm$DF))
+
+# compare the  between two functions
+all.equal(as.numeric(mymodel2$R_squared), as.numeric(sum_lm$r.squared))
+
+all.equal(as.numeric(mymodel2$F_stat), as.numeric(sum_lm$fstatistic))
+```
+
+```{r}
+
+```
