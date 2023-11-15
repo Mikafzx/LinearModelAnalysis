@@ -4,7 +4,7 @@ Title: Linear regression model analysis
 Version: 0.1.0
 Author: Zhuoxin Fu
 Maintainer: Zhuoxin Fu <zhuoxinf@umich.edu>
-Description: The function can conduct linear regression and output a summary and anova table as results.
+Description: The function can conduct linear regression and output a summary table as results.
 License: GPL-3.0
 Encoding: UTF-8
 LazyData: true
