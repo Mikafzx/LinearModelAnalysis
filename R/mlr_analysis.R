@@ -76,10 +76,10 @@ mlr_analysis = function(formula, dataset) {
 
   # List all results out
   summary_result = list(
+    coeff_table = coeff_comb,
     residuals = res,
     fitted_values = fitted_val,
     df = df2,
-    coeff_table = coeff_comb,
     R_squared = as.vector(r_square),
     adj_R_squared = as.vector(adj_r_square),
     F_stat = f_test,

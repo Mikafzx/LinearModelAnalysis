@@ -15,16 +15,32 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r setup}
+library(LinearModelAnalysis)
+data("mtcars")
+```
+
+# Purpose of the package
+
+This package include a r function mlr_analysis which take a multiple linear formula 
+and the data set as input, fit the model and output the residuals, fitted_values, df, 
+coeff_table（which include Estimates, Std.Error, t value and p value), R_squared,
+adj_R_squared, F_statistic, p-value of F_test and CI_95  of the fitted model.
+
+# Example using this package
+
+Here is an example of fitting a model with three covariance from the dataset mtcars and its' model analysis.
 ```{r}
+mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+```
+Here is an example of fitting a model with interaction from the dataset mtcars and its' model analysis.
+```{r}
+mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+```
+# Benchmark between mlr_analysis and the original lm function
+```{r}
+# fit the model which contains interaction with lm function
+lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcar)
 
 ```
 
-#Purpose of the package
-
-```{r}
-
-```
-
-```{r}
-
-```
