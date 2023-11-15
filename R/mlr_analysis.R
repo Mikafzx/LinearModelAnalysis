@@ -77,6 +77,7 @@ mlr_analysis = function(formula, dataset) {
   # List all results out
   summary_result = list(
     coeff_table = coeff_comb,
+    coefficients = coeff
     residuals = res,
     fitted_values = fitted_val,
     df = df2,
