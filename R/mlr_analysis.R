@@ -1,11 +1,14 @@
-#' Model analysis
+#' Multiple linear model analysis
 #'
 #' This function calculates and analysis multiple linear regression
 #'
 #' @param formula a formula in form of response ~ predictor1 + predictor2 + ...
 #' @param data a data frame containing all needed variables in the formula.
 #'
-#' @return the summary and anova table which contains outcomes of mlr model.
+#' @return the summary table which contains residuals, fitted_values, df,
+#' coeff_table（which include Estimates, Std.Error, t value and p value,
+#' R_squared, adj_R_squared, F_statistic, p-value of F_test and CI_95 of
+#' the input multiple linear model.
 #'
 #' @examples
 #'mlr_analysis(formula = mpg ~ hp + cyl, data = mtcars)
@@ -88,7 +91,3 @@ mlr_analysis = function(formula, dataset) {
   return(list(summary_table = summary_result))
 }
 
-mlr_analysis(formula = mpg ~ hp + cyl, data = mtcars)
-mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
-mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec, data = mtcars)
-mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
