@@ -38,7 +38,7 @@ This is an example on how to use the package.
 ```{r example}
 library(LinearModelAnalysis)
 data(mtcars)
-mymodel = mlr_analysis(formula = mpg ~ hp + cyl, data = mtcars)
+mymodel = mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
 ```
 
 
