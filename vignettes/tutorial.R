@@ -10,16 +10,16 @@ library(bench)
 data("mtcars")
 
 ## -----------------------------------------------------------------------------
-mymodel1 = mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+mymodel1 = mlr_analysis(formula = mpg ~ hp + cyl + wt, input_data = mtcars)
 mymodel1
 
 ## -----------------------------------------------------------------------------
-mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, input_data = mtcars)
 mymodel2
 
 ## -----------------------------------------------------------------------------
 # fit the model which contains interaction with original lm function
-lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, mtcars)
 sum_lm = summary(lm_model)
 lm_model
 sum_lm

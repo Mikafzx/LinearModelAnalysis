@@ -11,10 +11,10 @@
 #' the input multiple linear model.
 #'
 #' @examples
-#'mlr_analysis(formula = mpg ~ hp + cyl, data = mtcars)
-#'mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
-#'mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec, data = mtcars)
-#'mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+#'mlr_analysis(formula = mpg ~ hp + cyl, input_data = mtcars)
+#'mlr_analysis(formula = mpg ~ hp + cyl + wt, input_data = mtcars)
+#'mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec, input_data = mtcars)
+#'mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, input_data = mtcars)
 #'
 #' @export
 #'
