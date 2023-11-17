@@ -33,19 +33,19 @@ adj_R_squared, F_statistic, p-value of F_test and CI_95  of the fitted model.
 
 Here is an example of fitting a model with three covariance from the dataset mtcars and its' model analysis.
 ```{r}
-mymodel1 = mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+mymodel1 = mlr_analysis(formula = mpg ~ hp + cyl + wt, input_data = mtcars)
 mymodel1
 ```
 Here is an example of fitting a model with interaction from the dataset mtcars and its' model analysis.
 ```{r}
-mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+mymodel2 = mlr_analysis(formula = mpg ~ hp + cyl + wt + qsec + cyl * wt, input_data = mtcars)
 mymodel2
 ```
 ## Comapre and benchmark between mlr_analysis and the original lm function
 
 ```{r}
 # fit the model which contains interaction with original lm function
-lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, data = mtcars)
+lm_model = lm(mpg ~ hp + cyl + wt + qsec + cyl * wt, mtcars)
 sum_lm = summary(lm_model)
 lm_model
 sum_lm
