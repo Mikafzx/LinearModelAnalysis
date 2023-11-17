@@ -43,5 +43,5 @@ This is an example on how to use the package.
 ``` r
 library(LinearModelAnalysis)
 data(mtcars)
-mymodel = mlr_analysis(formula = mpg ~ hp + cyl + wt, data = mtcars)
+mymodel = mlr_analysis(formula = mpg ~ hp + cyl + wt, input_data = mtcars)
 ```
