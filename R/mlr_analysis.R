@@ -3,7 +3,7 @@
 #' This function calculates and analysis multiple linear regression
 #'
 #' @param formula a formula in form of response ~ predictor1 + predictor2 + ...
-#' @param data a data frame containing all needed variables in the formula.
+#' @param input_data a data frame containing all needed variables in the formula.
 #'
 #' @return the summary table which contains residuals, fitted_values, df,
 #' coeff_table（which include Estimates, Std.Error, t value and p value,
@@ -19,9 +19,9 @@
 #' @export
 #'
 
-mlr_analysis = function(formula, dataset) {
+mlr_analysis = function(formula, input_data) {
   # Reform x and y from the input formula & Calculate n, p and df
-  fulldata = na.omit(dataset) #get rid of NA in data set
+  fulldata = na.omit(input_data) #get rid of NA in input_data
   n = nrow(fulldata)
   p = length(labels(terms(formula))) + 1
   Y = fulldata[, as.character(formula[[2]]), drop = FALSE]
