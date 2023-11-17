@@ -4,12 +4,12 @@
 \alias{mlr_analysis}
 \title{Multiple linear model analysis}
 \usage{
-mlr_analysis(formula, dataset)
+mlr_analysis(formula, input_data)
 }
 \arguments{
 \item{formula}{a formula in form of response ~ predictor1 + predictor2 + ...}
 
-\item{data}{a data frame containing all needed variables in the formula.}
+\item{input_data}{a data frame containing all needed variables in the formula.}
 }
 \value{
 the summary table which contains residuals, fitted_values, df,
